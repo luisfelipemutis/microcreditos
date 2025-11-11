@@ -4,7 +4,7 @@
 <div class='Contvcc Frm1'>
   <div class='Contvcc FrmEr Smbr2'>
     <div class='Contvtc' style="margin-top: 30px;">
-      <img class="ImgLog2" src="<?=base_url?>assets/images/logo.png">
+      <img class="ImgLog2" src="<?=base_url?>assets/images/logo_unicomfacauca.png">
       <h6><?=$er_reg?></h6>
     </div><br>
     <div>
