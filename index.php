@@ -4,13 +4,10 @@ if (session_status() === PHP_SESSION_NONE)
 
 require_once 'config/parameters.php';
 require_once 'autoload.php';
-
-// incluir header (ya no abre divs de contenido)
 require_once 'views/header.php';
 ?>
 
-<!-- ESTE contenedor ocupa el espacio entre header y footer -->
-<div class="layout">
+<div class="layout"> <!-- ESTE contenedor ocupa el espacio entre header y footer -->
   <div class="Contptl">
     <!-- SIDEBAR -->
     <aside class="Block_aside">
@@ -27,7 +24,7 @@ require_once 'views/header.php';
         require_once 'views/error.php';
       }
 
-      // Lógica del front controller (igual a la tuya)
+      // Lógica del front controller
       if (isset($_GET['controller'])) {
         $controller = $_GET['controller'] . 'Controller';
       } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
@@ -58,7 +55,6 @@ require_once 'views/header.php';
 </div> <!-- /.layout -->
 
 <?php
-
 // Se incluye un footer para la página.
 require_once 'views/footer.php';
 ?>

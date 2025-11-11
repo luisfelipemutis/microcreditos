@@ -5,7 +5,7 @@ a { text-decoration: none; }
 body { background-color: #fff; font-family: 'Work Sans', sans-serif; line-height: 20px; font-size: 13px; color: #4b4b4b; }
 h1 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 48px; font-size: 40px; font-weight: 600; }
 h2 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 44px; font-size: 32px; font-weight: 600; }
-h3 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 36px; font-size: 24px; font-weight: 600; }
+h3 { color: #10B981; font-family: 'Montserrat', sans-serif; line-height: 36px; font-size: 24px; font-weight: 600; }
 h4 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 30px; font-size: 20px; font-weight: 600; }
 h5 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 27px; font-size: 18px; font-weight: 600; }
 h6 { color: #004884; font-family: 'Work Sans', sans-serif; line-height: 24px; font-size: 16px; font-weight: 600; }
@@ -28,7 +28,7 @@ nav ul li a { display: block; border-right: 1px solid #f9f8f8; /*overflow: hidde
 nav ul li a:hover { font-size: 16px; color: #7357ba; }
 
 /*--componentes contenido--*/
-label { color: #4b4b4b; font-family: 'Montserrat', sans-serif; font-size: 14px; }
+label { color: #141313; font-family: 'Montserrat', sans-serif; font-size: 14px; }
 input { padding: 7px; height: 25px; border: #bababa solid 1px; border-radius: 5px; font-family: 'Work Sans', sans-serif;
 			  font-size: 14px; font-weight: 400; margin-bottom: 7px; }
 textarea { padding: 7px; border: #bababa solid 1px; border-radius: 5px; font-family: 'Work Sans', sans-serif; font-size: 14px;
@@ -118,7 +118,7 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 .product p { font-weight: bold; color: #555; margin-bottom: 10px; }
 #detail-product { width: 100%; margin-top: 20px; }
 #detail-product img { display: block; width: 40%; height: 30%; float: left; margin-left: 40px;} 
-.Block_aside { width: 25%; min-width: 250px; height: 100%; border-right: 2px solid #a19bb1; }
+.Block_aside { width: 25%; min-width: 250px; height: 100%; }
 .Frm1 { width: 75%; }
 .Frm2 { width: 280px; padding: 20px; margin-top: 5px; background: #E1E1E1;}
 .FrmEr { width: 500px; margin-top: 30px; border-radius: 10px; background: #e9eae2; }
@@ -144,8 +144,6 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 .Img45x45 { width: 45px; height: 45px; }
 .Img50x50 { width: 55px; height: 55px; }
 .ImgMdl { width: 60px; height: 60px; }
-
-
 
 
 /* --- Layout estructural (Pegar al final de style.css) --- */
@@ -225,7 +223,7 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 
 .content-principal {
 	flex: 1;
-	padding: 30px;
+	padding: 0px 30px 0px 0px;
 	overflow-y: auto;
 	box-sizing: border-box;
 	color: #374151;
@@ -239,6 +237,151 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 	text-align: center;
 	padding: 10px 0;
 	font-size: 14px;
+}
+
+
+/* === SIDEBAR GENERAL === */
+.sidebar {
+  background-color: #1E3A8A; /* Azul institucional */
+  color: white;
+  width: 270px;
+  min-height: calc(100vh - 115px); /* Altura total - header/nav */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 25px;
+  box-sizing: border-box;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === CABECERA DEL SIDEBAR === */
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #10B981 !important;
+}
+
+.sidebar-header .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 5px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.sidebar-header p {
+  font-size: 13px;
+  color: #d1d5db;
+  margin: 0;
+}
+
+/* === FORMULARIO DE LOGIN === */
+.sidebar-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.sidebar-form label {
+  font-size: 14px;
+  text-align: left;
+}
+
+.sidebar-form input[type="text"],
+.sidebar-form input[type="password"] {
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar-form input[type="text"]:focus,
+.sidebar-form input[type="password"]:focus {
+  outline: 2px solid #3B82F6;
+  background-color: #f0f4ff;
+}
+
+/* === BOTONES === */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #3B82F6;
+}
+
+.btn-primary:hover {
+  background-color: #2563EB;
+}
+
+.btn-secondary {
+  background-color: #10B981;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.btn-secondary:hover {
+  background-color: #059669;
+}
+
+.btn-danger {
+  background-color: #DC2626;
+  margin-top: 15px;
+}
+
+.btn-danger:hover {
+  background-color: #B91C1C;
+}
+
+/* === LINKS Y TEXTOS === */
+.register-text {
+  font-size: 13px;
+  margin-top: 10px;
+  color: #E5E7EB;
+}
+
+.link {
+  color: #10B981;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* === MENÚ DE USUARIO (logueado) === */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin-top: 15px;
 }
 
 
