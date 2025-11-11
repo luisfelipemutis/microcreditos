@@ -76,6 +76,49 @@ INSERT INTO productos (
     TRUE
 );
 
+-- Producto 3: Portátil Lenovo IdeaPad 3
+INSERT INTO productos (
+    nombre, 
+    descripcion, 
+    id_categoria, 
+    cantidad_disponible, 
+    valor_aproximado, 
+    condiciones_uso, 
+    requiere_aprobacion, 
+    activo
+) VALUES (
+    'Portátil Lenovo IdeaPad 3', 
+    'Equipo portátil con procesador AMD Ryzen 5, 8GB RAM, 256GB SSD. Ideal para presentaciones, desarrollo de proyectos y trabajos académicos.',
+    1, -- TECNOLOGÍA
+    5, 
+    2500000.00, 
+    '• Uso exclusivo dentro del campus\n• No modificar configuraciones del sistema\n• Entregar con cargador original\n• Reportar daños o bloqueos de inmediato',
+    TRUE, 
+    TRUE
+);
+
+-- Producto 4: Cámara Fotográfica Canon EOS Rebel T7
+INSERT INTO productos (
+    nombre, 
+    descripcion, 
+    id_categoria, 
+    cantidad_disponible, 
+    valor_aproximado, 
+    condiciones_uso, 
+    requiere_aprobacion, 
+    activo
+) VALUES (
+    'Cámara Canon EOS Rebel T7', 
+    'Cámara réflex digital con lente 18-55mm, resolución de 24.1MP, ideal para fotografía institucional, eventos o proyectos audiovisuales.',
+    1, -- TECNOLOGÍA
+    2, 
+    3200000.00, 
+    '• Manipular con correa y protección de lente\n• Prohibido cambiar configuraciones avanzadas\n• Devolver con batería cargada y memoria SD\n• Uso máximo de 24 horas',
+    TRUE, 
+    TRUE
+);
+
+
 -- Imágenes para el Videobeam (Producto ID 1)
 INSERT INTO imagenes_producto (id_producto, url_imagen, es_principal) VALUES
 (1, '/assets/images/productos/videobeam-epsom-x49-1.jpg', TRUE),
@@ -87,6 +130,11 @@ INSERT INTO imagenes_producto (id_producto, url_imagen, es_principal) VALUES
 (2, '/assets/images/productos/sala-estudio-grupo-a-1.jpg', TRUE),
 (2, '/assets/images/productos/sala-estudio-grupo-a-2.jpg', FALSE),
 (2, '/assets/images/productos/sala-estudio-diagrama.jpg', FALSE);
+
+INSERT INTO `prestamvc`.`imagenes_producto` (`id_imagen`, `id_producto`, `url_imagen`, `es_principal`) 
+VALUES ('2', '3', 'portatil-lenovo.jpg', '1');
+INSERT INTO `prestamvc`.`imagenes_producto` (`id_imagen`, `id_producto`, `url_imagen`, `es_principal`) 
+VALUES ('3', '4', 'camara-canon.jpg', '1');
 
 
 /*

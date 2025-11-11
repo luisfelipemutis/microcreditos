@@ -563,6 +563,94 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 	width: 100%;
 }
 
+/* =======================================
+   🔹 ESTILOS PARA LISTADO DE PRODUCTOS
+   ======================================= */
+
+.productos-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	/* 3 por fila adaptable */
+	gap: 20px;
+	padding: 20px;
+	width: 100%;
+	box-sizing: border-box;
+	overflow-y: auto;
+	/* Scroll si hay muchos productos */
+	max-height: calc(100vh - 160px);
+	/* evita sobrepasar el footer */
+}
+
+.producto-card {
+	background-color: #ffffff;
+	border: 1px solid #d1d9e6;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.producto-card img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-bottom: 1px solid #d1d9e6;
+}
+
+.producto-info {
+	padding: 15px;
+	text-align: left;
+}
+
+.producto-info h3 {
+	color: #1d4ed8;
+	font-size: 1.1rem;
+	margin-bottom: 10px;
+}
+
+.producto-info p {
+	margin: 5px 0;
+	color: #334155;
+	font-size: 0.9rem;
+}
+
+.producto-info .descripcion {
+	color: #475569;
+	font-size: 0.9rem;
+	line-height: 1.4;
+}
+
+.producto-info .condiciones,
+.producto-info .cantidad {
+	font-size: 0.85rem;
+	color: #64748b;
+}
+
+.btn-alquilar {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	background-color: #2563eb;
+	color: #fff;
+	padding: 10px 0;
+	margin-top: 12px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: bold;
+	transition: background-color 0.2s ease;
+}
+
+.btn-alquilar:hover {
+	background-color: #1e40af;
+}
 
 
 

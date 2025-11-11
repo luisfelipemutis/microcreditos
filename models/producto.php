@@ -132,5 +132,18 @@ class Producto
     }
     return $result;
   }
+
+  public function getRandomAll()
+  {
+    $sql = "SELECT DISTINCT p.*, ip.url_imagen
+          FROM productos AS p
+          INNER JOIN imagenes_producto AS ip 
+          ON p.id_producto = ip.id_producto
+          WHERE p.activo = 1
+          ORDER BY RAND()";
+
+    $datos = $this->db->query($sql);
+    return ($datos && $datos->num_rows > 0) ? $datos : false;
+  }
 }
 ?>
