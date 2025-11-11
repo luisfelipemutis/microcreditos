@@ -80,6 +80,16 @@ El .gitignore para tu proyecto PHP podría contener:
 .DS_Store
 
 
+Paleta de colores recomendada:
+
+| Color              | Uso                          | Código    |
+| ------------------ | ---------------------------- | --------- |
+| Azul institucional | Header y elementos primarios | `#1E3A8A` |
+| Azul claro         | Fondo del menú / hover       | `#3B82F6` |
+| Verde esmeralda    | Botones o acentos de éxito   | `#10B981` |
+| Blanco             | Fondo o texto invertido      | `#FFFFFF` |
+| Gris claro         | Fondo del contenido          | `#F9FAFB` |
+| Gris oscuro        | Texto neutro                 | `#374151` |
 
 
 
@@ -93,3 +103,7 @@ echo "<script>console.log('ERROR: Contraseñas no coinciden');</script>";
  admin1234
 
 ///
+
+
+
+

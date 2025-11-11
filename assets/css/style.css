@@ -142,4 +142,106 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 .Img30x30 { width: 30px; height: 30px; }
 .Img40x40 { width: 40px; height: 40px; }
 .Img45x45 { width: 45px; height: 45px; }
+.Img50x50 { width: 55px; height: 55px; }
 .ImgMdl { width: 60px; height: 60px; }
+
+
+
+
+/* --- Layout estructural (Pegar al final de style.css) --- */
+
+/* === ESTRUCTURA HEADER === */
+.header {
+	background-color: #1E3A8A;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 70px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-logo {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.header-logo img {
+	height: 50px;
+	width: 50px;
+}
+
+.header-logo h1 {
+	color: white;
+	font-size: 20px;
+	margin: 0;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+}
+
+/* === MENÚ DE NAVEGACIÓN === */
+.navbar {
+	background-color: #3B82F6;
+	/* Azul claro */
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.navbar ul {
+	list-style: none;
+	display: flex;
+	gap: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar a {
+	color: white;
+	text-decoration: none;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	font-size: 15px;
+}
+
+.navbar a:hover {
+	color: #10B981;
+	/* Verde esmeralda */
+	border-bottom: 2px solid #10B981;
+	padding-bottom: 3px;
+}
+
+/* === ESTRUCTURA PRINCIPAL === */
+.page-container {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-color: #F9FAFB;
+	min-height: calc(95.6vh - 115px);
+	/* Header + nav = 115px */
+}
+
+.content-principal {
+	flex: 1;
+	padding: 30px;
+	overflow-y: auto;
+	box-sizing: border-box;
+	color: #374151;
+	/* Gris oscuro */
+}
+
+/* === FOOTER === */
+.footer {
+	background-color: #1E3A8A;
+	color: white;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 14px;
+}
+
+
+
+
+
