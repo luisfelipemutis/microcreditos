@@ -21,8 +21,8 @@
     <nav class="navbar">
         <ul>
             <li><a href="<?= base_url ?>">Inicio</a></li>
-            <li><a href="#">Sobre nosotros</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="<?= base_url ?>?view=sobreNosotros">Sobre nosotros</a></li>
+            <li><a href="<?= base_url ?>?view=contacto">Contacto</a></li>
         </ul>
     </nav>
 

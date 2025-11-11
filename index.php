@@ -7,7 +7,7 @@ require_once 'autoload.php';
 require_once 'views/header.php';
 ?>
 
-<div class="layout"> <!-- ESTE contenedor ocupa el espacio entre header y footer -->
+<div class="layout"> <!-- Contenedor principal entre header y footer -->
   <div class="Contptl">
     <!-- SIDEBAR -->
     <aside class="Block_aside">
@@ -24,30 +24,51 @@ require_once 'views/header.php';
         require_once 'views/error.php';
       }
 
-      // Lógica del front controller
-      if (isset($_GET['controller'])) {
-        $controller = $_GET['controller'] . 'Controller';
-      } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
-        $controller = controller_default;
+      // Verificamos si se solicita una vista estática (Sobre Nosotros o Contacto)
+      if (isset($_GET['view'])) {
+        $view = $_GET['view'];
+
+        switch ($view) {
+          case 'sobreNosotros':
+            require_once 'views/sobreNosotros/aboutUs.php';
+            break;
+          case 'contacto':
+            require_once 'views/sobreNosotros/contact.php';
+            break;
+          case 'inicio':
+            // Si quieres, puedes definir una vista principal estática (opcional)
+            require_once 'views/inicio.php';
+            break;
+          default:
+            show_error();
+            break;
+        }
       } else {
-        show_error();
-        exit();
-      }
-
-      if (class_exists($controller)) {
-        $controlador = new $controller();
-
-        if (isset($_GET['action']) && method_exists($controlador, $_GET['action'])) {
-          $action = $_GET['action'];
-          $controlador->$action();
+        // --- Lógica del front controller (controladores dinámicos) ---
+        if (isset($_GET['controller'])) {
+          $controller = $_GET['controller'] . 'Controller';
         } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
-          $action_default = action_default;
-          $controlador->$action_default();
+          $controller = controller_default;
+        } else {
+          show_error();
+          exit();
+        }
+
+        if (class_exists($controller)) {
+          $controlador = new $controller();
+
+          if (isset($_GET['action']) && method_exists($controlador, $_GET['action'])) {
+            $action = $_GET['action'];
+            $controlador->$action();
+          } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
+            $action_default = action_default;
+            $controlador->$action_default();
+          } else {
+            show_error();
+          }
         } else {
           show_error();
         }
-      } else {
-        show_error();
       }
       ?>
     </main>
@@ -55,6 +76,6 @@ require_once 'views/header.php';
 </div> <!-- /.layout -->
 
 <?php
-// Se incluye un footer para la página.
+// Se incluye el footer para toda la página
 require_once 'views/footer.php';
 ?>
