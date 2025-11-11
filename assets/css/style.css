@@ -46,7 +46,7 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 .alt_red { color: red; }
 #AddProd div { width: 100%; margin-bottom: 5px; }
 #AddProd label { width: 90px; }
-#AddProd input, select { width: 300px; height: 35px;}
+#AddProd input, select { width: 300px; height: 47px;}
 #AddProd textarea { width: 300px; height: 70px;}
 
 /*botones */
@@ -118,7 +118,6 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 .product p { font-weight: bold; color: #555; margin-bottom: 10px; }
 #detail-product { width: 100%; margin-top: 20px; }
 #detail-product img { display: block; width: 40%; height: 30%; float: left; margin-left: 40px;} 
-.Block_aside { width: 25%; min-width: 250px; height: 100%; }
 .Frm1 { width: 75%; }
 .Frm2 { width: 280px; padding: 20px; margin-top: 5px; background: #E1E1E1;}
 .FrmEr { width: 500px; margin-top: 30px; border-radius: 10px; background: #e9eae2; }
@@ -147,10 +146,25 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 
 
 
-
 /* --- Layout estructural (Pegar al final de style.css) --- */
 
 /* === ESTRUCTURA HEADER === */
+.main-content {
+	height: 100%;
+	flex: 1;
+	display: flex;
+	/* para poder centrar */
+	justify-content: center;
+	/* centra horizontalmente */
+	align-items: center;
+	/* centra verticalmente */
+	padding: 20px;
+	overflow-y: auto;
+	/* permite scroll si el contenido es largo */
+	min-height: calc(90vh - 115px);
+}
+
+
 .header {
 	background-color: #1E3A8A;
 	color: white;
@@ -243,12 +257,17 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 
 
 /* === SIDEBAR GENERAL === */
+.Block_aside {
+	width: 260px;
+	background: #e8effb;
+}
+
 .sidebar {
 	background-color: #1E3A8A;
 	/* Azul institucional */
 	color: white;
 	width: 270px;
-	min-height: calc(100vh - 115px);
+	min-height: calc(95vh - 115px);
 	/* Altura total - header/nav */
 	display: flex;
 	flex-direction: column;
@@ -479,6 +498,70 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 	background-color: #f0f4ff;
 }
 
+/* === Registro === */
+.registro-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	/* resta header + footer */
+	padding: 40px 0;
+	background-color: #f8fafc;
+}
+
+.registro-form {
+	background: #fff;
+	padding: 30px 40px;
+	border-radius: 15px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.registro-form h2 {
+	color: #2a4e9c;
+	margin-bottom: 5px;
+}
+
+.registro-subtitle {
+	color: #6b7280;
+	font-size: 14px;
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.registro-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 15px;
+	width: 100%;
+}
+
+.registro-grid input,
+.registro-grid select {
+	padding: 10px;
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	outline: none;
+	font-size: 14px;
+	transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.registro-grid input:focus,
+.registro-grid select:focus {
+	border-color: #73a0db;
+	box-shadow: 0 0 0 3px rgba(115, 160, 219, 0.2);
+}
+
+.registro-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 25px;
+	width: 100%;
+}
 
 
 
