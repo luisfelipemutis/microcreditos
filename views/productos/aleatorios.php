@@ -8,9 +8,6 @@
         <p class="descripcion"><?= $data->descripcion ?></p>
         <p class="condiciones"><strong>Condiciones:</strong> <?= $data->condiciones_uso ?></p>
         <p class="cantidad"><strong>Disponibles:</strong> <?= $data->cantidad_disponible ?></p>
-        <?php
-        echo "<pre>Total productos: " . $productos->num_rows . "</pre>";
-        ?>
         <a href="#" class="btn-alquilar">Alquilar</a>
       </div>
     </div>
