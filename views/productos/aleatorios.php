@@ -11,5 +11,6 @@
         <a href="#" class="btn-alquilar">Alquilar</a>
       </div>
     </div>
+    
   <?php endwhile; ?>
 </div>
