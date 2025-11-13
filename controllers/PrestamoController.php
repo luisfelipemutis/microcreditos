@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Prestamo.php';
+require_once 'models/producto.php';
 
 class PrestamoController
 {
@@ -34,6 +35,9 @@ class PrestamoController
             $resultSol = $prestamo->solicitarPrestamo();
 
             if ($resultSol) {
+                $producto = new Producto();
+                $producto->updateRentedProduct($prestamo->getIdProducto());
+
                 $_SESSION['msgsuccess'] = "Solicitud creada con éxito.";
                 require_once 'views/success.php';
             } else {

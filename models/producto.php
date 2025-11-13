@@ -120,19 +120,6 @@ class Producto
   }
 
   // Methods
-  public function getRandom($limit = 4)
-  {
-    $result = false;
-    $sql = "SELECT * FROM productos as p, imagenes_producto as ip 
-              WHERE p.id_producto = ip.id_producto
-              GROUP BY p.id_producto ORDER BY RAND() LIMIT $limit";
-    $datos = $this->db->query($sql);
-    if ($datos && $datos->num_rows > 0) {
-      $result = $datos;
-    }
-    return $result;
-  }
-
   public function getRandomAll()
   {
     $sql = "SELECT DISTINCT p.*, ip.url_imagen
@@ -157,8 +144,28 @@ class Producto
         $result = $product->fetch_object();
       }
     } catch (Exception $e) {
-      error_log("Exepción en update(): " . $e->getMessage());
+      error_log("Excepción en update(): " . $e->getMessage());
     }
+    return $result;
+  }
+
+  public function updateRentedProduct($id)
+  {
+    $result = false;
+    try {
+      $sql = "UPDATE productos 
+                SET cantidad_disponible = cantidad_disponible - 1 
+                WHERE id_producto = '{$id}' AND cantidad_disponible > 0"; // previene negativos
+
+      $update = $this->db->query($sql);
+
+      if ($update && $this->db->affected_rows === 1) {
+        $result = true;
+      }
+    } catch (Exception $e) {
+      error_log("Excepción en updateRentedProduct(): " . $e->getMessage());
+    }
+
     return $result;
   }
 }
