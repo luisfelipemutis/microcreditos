@@ -648,6 +648,18 @@ td { border-top: 1px solid #ccc; padding: 2px; }
 	background-color: #1e40af;
 }
 
+.btn-alquilar.no-disponible {
+	background-color: #ccc;
+	color: #666;
+	cursor: not-allowed;
+	pointer-events: auto;
+	/* permite que JS detecte el click aunque esté desactivado visualmente */
+}
+
+.btn-alquilar.no-disponible:hover {
+	background-color: #bbb;
+}
+
 /* ===================================================
    FORMULARIO: Actualizar Usuario
    =================================================== */
