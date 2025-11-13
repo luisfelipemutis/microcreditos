@@ -8,9 +8,9 @@
         <p class="descripcion"><?= $data->descripcion ?></p>
         <p class="condiciones"><strong>Condiciones:</strong> <?= $data->condiciones_uso ?></p>
         <p class="cantidad"><strong>Disponibles:</strong> <?= $data->cantidad_disponible ?></p>
-        <a href="#" class="btn-alquilar">Alquilar</a>
+        <a href="<?= base_url ?>Producto/rent&id=<?= $data->id_producto ?>" class="btn-alquilar">Alquilar</a>
       </div>
     </div>
-    
+
   <?php endwhile; ?>
 </div>

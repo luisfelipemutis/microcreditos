@@ -145,5 +145,21 @@ class Producto
     $datos = $this->db->query($sql);
     return ($datos && $datos->num_rows > 0) ? $datos : false;
   }
+
+  public function getProductById($id)
+  {
+    $result = false;
+    try {
+      $sql = "SELECT p.*, ip.url_imagen FROM productos p INNER JOIN imagenes_producto ip
+      ON p.id_producto = ip.id_producto WHERE p.id_producto = '{$id}' LIMIT 1";
+      $product = $this->db->query($sql);
+      if ($product && $product->num_rows == 1) {
+        $result = $product->fetch_object();
+      }
+    } catch (Exception $e) {
+      error_log("Exepción en update(): " . $e->getMessage());
+    }
+    return $result;
+  }
 }
 ?>

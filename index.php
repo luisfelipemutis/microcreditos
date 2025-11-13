@@ -41,6 +41,9 @@ require_once 'views/header.php';
           case 'updateUser':
             require_once 'views/usuarios/updateUser.php';
             break;
+          case 'rentProduct':
+            require_once 'views/productos/rentProduct.php';
+            break;
           default:
             show_error();
             break;
