@@ -1,121 +1,175 @@
-# Sistema de Microcréditos Universitarios
+# 🎓 Sistema de Microcréditos Universitarios
 
-## Descripción
-Sistema web para gestión de préstamos de recursos universitarios (equipos, salas, dinero) desarrollado en PHP con arquitectura MVC.
+## 📘 Descripción
+Aplicación web desarrollada en **PHP (arquitectura MVC)** para la **gestión de préstamos de recursos universitarios**, como equipos tecnológicos, salas de estudio y microcréditos monetarios.
 
-## Características
-- Préstamo de equipos tecnológicos (videobeams, laptops)
-- Reserva de salas de estudio
-- Solicitud de microcréditos monetarios
-- Roles de usuario: Estudiante y Administrador
-- Gestión completa de préstamos y devoluciones
+El sistema permite tanto a estudiantes como a administradores realizar y gestionar solicitudes de préstamo, controlando su estado, devolución y disponibilidad de productos.
 
-## Requisitos
-- PHP 7.4 o superior
-- MySQL 5.7 o superior
-- Apache Web Server
-- XAMPP (recomendado para desarrollo)
+---
 
-## Instalación
-1. Clonar/descargar el proyecto en `C:\xampp\htdocs\microcreditos\`
-2. Importar la base de datos desde `database/DbPrestamos.sql`
-3. Configurar conexión en `config/conexion.php`
-4. Acceder via: `http://localhost/microcreditos`
+## 🚀 Características Principales
+- 📦 **Préstamo de equipos** (videobeams, laptops, tablets, etc.)
+- 🏫 **Reserva de salas de estudio**
+- 💰 **Solicitud y gestión de microcréditos monetarios**
+- 👥 **Roles de usuario:** Estudiante y Administrador
+- 🔄 **Gestión completa de préstamos:** solicitud, aprobación, cancelación, devolución
+- 📊 **Actualización automática de inventario** según estado del préstamo
+- ⚠️ **Mensajes de error y confirmación** mediante sesiones (`$_SESSION['msgerror']`, `$_SESSION['msgsuccess']`)
+- 🧩 **Separación por capas (MVC):** Controladores, Modelos y Vistas
+- 🧠 **Depuración y trazabilidad** mediante `error_log` y `console.log` en modo desarrollo
 
-## Estructura del Proyecto
+---
+
+## 🧱 Tecnologías Utilizadas
+- **Backend:** PHP 7.4+ (nativo, sin frameworks)
+- **Frontend:** HTML5, CSS3, JavaScript (vanilla)
+- **Base de datos:** MySQL 5.7+
+- **Servidor:** Apache (se recomienda XAMPP)
+- **Arquitectura:** MVC (Model–View–Controller)
+
+---
+
+## 🛠️ Instalación y Configuración
+
+### 1️⃣ Requisitos previos
+- PHP 7.4 o superior  
+- MySQL 5.7 o superior  
+- Apache Web Server  
+- XAMPP (recomendado para entorno local)
+
+### 2️⃣ Instalación
+1. Clona o descarga este repositorio en:
+C:\xampp\htdocs\microcreditos\
+
+2. Importa la base de datos desde:
+database/DbPrestamos.sql
+
+3. Configura la conexión en:
+config/conexion.php
+
+4. Accede al sistema desde tu navegador:
+
+http://localhost/microcreditos
+
+---
+
+## 🧩 Estructura del Proyecto
 
 microcreditos/
-├── controllers/ # Controladores MVC
-├── models/ # Modelos de datos
-├── views/ # Vistas y templates
-├── config/ # Configuración y parámetros
-├── database/ # Scripts de base de datos
-├── assets/ # CSS, imágenes, JS
-└── index.php # Punto de entrada
-
-
-
-## Base de Datos
-El sistema utiliza las siguientes tablas principales:
-- `usuarios` - Gestión de usuarios y roles
-- `productos` - Recursos disponibles para préstamo
-- `prestamos` - Registro de solicitudes y estados
-- `categorias_producto` - Clasificación de recursos
-
-## Desarrollo
-- **Patrón:** MVC (Model-View-Controller)
-- **Frontend:** HTML5, CSS3, JavaScript vanilla
-- **Backend:** PHP nativo
-- **Base de datos:** MySQL
-
-## Licencia
-Proyecto académico - Universidad Unicomfacauca
-
-¿Por qué en la raíz?
-Visibilidad inmediata - Es lo primero que se ve al abrir el proyecto
-
-Estándar de la industria - Todos los proyectos tienen el README en raíz
-
-Acceso directo - Fácil de encontrar y editar
-
-Compatibilidad con Git - Plataformas como GitHub/GitLab lo esperan en raíz
-
-Si usas Git, también deberías tener:
-
-MICROCREDITOS/
-├── .git/               # Carpeta de Git (oculta)
-├── .gitignore          # Archivo para ignorar archivos
-├── README.md           # Documentación principal
+├── assets/ # Archivos estáticos (CSS, JS, imágenes)
+├── config/ # Configuración general y conexión DB
+├── controllers/ # Controladores (lógica de negocio)
+├── database/ # Scripts SQL de creación y datos
+├── models/ # Modelos de base de datos
+├── views/ # Vistas (interfaces y plantillas)
+├── index.php # Punto de entrada principal
 ├── .htaccess
-├── index.php
-└── ... resto de carpetas
+├── .gitignore
+└── README.md
 
-El .gitignore para tu proyecto PHP podría contener:
+---
 
+## 🗃️ Base de Datos
 
-/config/parameters.php  # Configuraciones sensibles
-/node_modules/
-/vendor/
-*.log
-.DS_Store
+Tablas principales:
+| Tabla | Descripción |
+|-------|--------------|
+| `usuarios` | Gestión de usuarios, autenticación y roles |
+| `productos` | Inventario de recursos disponibles |
+| `prestamos` | Registro de solicitudes, estados y fechas |
+| `categorias_producto` | Clasificación de los productos |
 
+### 🧮 Lógica de préstamo y devolución
 
-Paleta de colores recomendada:
+| Acción | Efecto en préstamo | Efecto en producto |
+|--------|--------------------|--------------------|
+| **Cancelar** | Estado → “cancelado” | Incrementa `cantidad_disponible` |
+| **Devolver** | Estado → “devuelto” | Incrementa `cantidad_disponible` |
+| **Solicitar** | Crea nuevo préstamo | Decrementa `cantidad_disponible` |
 
-| Color              | Uso                          | Código    |
-| ------------------ | ---------------------------- | --------- |
-| Azul institucional | Header y elementos primarios | `#1E3A8A` |
-| Azul claro         | Fondo del menú / hover       | `#3B82F6` |
-| Verde esmeralda    | Botones o acentos de éxito   | `#10B981` |
-| Blanco             | Fondo o texto invertido      | `#FFFFFF` |
-| Gris claro         | Fondo del contenido          | `#F9FAFB` |
-| Gris oscuro        | Texto neutro                 | `#374151` |
+---
 
+## ⚙️ Funcionalidades Implementadas (Controllers / Models)
 
+### `PrestamoController.php`
+- `getLoansByIdUser()` → lista los préstamos del usuario autenticado  
+- `cancelarPrestamo()` → permite cancelar solicitudes y libera el producto  
+- `marcarComoDevuelto()` → marca préstamos como devueltos y actualiza stock  
 
-# Console log para poder realizar debug con la consola, solo en modo desarrollo no en producción.
-///
+### `Prestamo.php` (Modelo)
+- `getLoansByIdUser($id_usuario)` → obtiene préstamos por usuario  
+- `getPrestamoById($id_prestamo)` → obtiene datos completos de un préstamo  
+- `cancelarPrestamo($id_prestamo, $id_usuario)` → cambia estado a “cancelado”  
+- `marcarComoDevuelto($id_prestamo, $id_usuario)` → cambia estado a “devuelto”  
+
+### `Producto.php` (Modelo)
+- `updateReturnedProduct($id_producto)` → incrementa cantidad disponible  
+
+---
+
+## 🧰 Depuración y Logs
+
+### En consola (solo en desarrollo):
+```php
 echo "<script>console.log('ERROR: Contraseñas no coinciden');</script>";
- echo "<script>console.log('POST:', " . json_encode($_POST) . ");</script>";
+echo "<script>console.log('POST:', " . json_encode($_POST) . ");</script>";
 
-
-Imprimir errores en un archivo .php
+En archivo de error PHP:
 error_log("Ejecutando INSERT para usuario: " . $sql);
 error_log("Usuario: " . var_export($datos, true));
 
+🧾 .gitignore recomendado
+/config/parameters.php
+/vendor/
+/node_modules/
+*.log
+.DS_Store
 
-      error_log("Usuario: " . var_export($datos, true));
+🎨 Paleta de Colores Recomendada
+| Color              | Uso                         | Código    |
+| ------------------ | --------------------------- | --------- |
+| Azul institucional | Header, botones principales | `#1E3A8A` |
+| Azul claro         | Hover, fondos secundarios   | `#3B82F6` |
+| Verde esmeralda    | Confirmaciones y éxito      | `#10B981` |
+| Blanco             | Fondo principal             | `#FFFFFF` |
+| Gris claro         | Fondo de contenido          | `#F9FAFB` |
+| Gris oscuro        | Texto neutro                | `#374151` |
+
+🧑‍💻 Desarrollo
+
+Patrón: MVC (Model–View–Controller)
+
+Lenguaje: PHP nativo
+
+Frontend: HTML, CSS, JS
+
+Base de datos: MySQL
+
+IDE recomendado: VS Code o PhpStorm
+
+Entorno sugerido: XAMPP
+
+🏛️ Licencia
+
+Proyecto académico desarrollado para la Universidad Unicomfacauca
+Uso educativo y demostrativo. No destinado a producción comercial.
+
+📂 Estructura esperada en Git
+MICROCREDITOS/
+├── .git/
+├── .gitignore
+├── README.md
+├── .htaccess
+├── index.php
+├── controllers/
+├── models/
+├── views/
+├── assets/
+└── database/
 
 
- admin1234
-
-///
-
+✨ Última actualización: noviembre 2025
+Incluye: funciones de cancelación y devolución, actualización automática de stock y obtención segura de id_producto desde la base de datos.
 
 
-
-
-
-
-
-
+---

@@ -69,7 +69,7 @@ INSERT INTO productos (
     'Sala de Estudio Grupo A - Biblioteca Central', 
     'Sala equipada para grupos de estudio, capacidad para 8 personas, pizarra acrílica, conexión eléctrica y WiFi de alta velocidad.',
     2, -- SALAS
-    1, 
+    5, 
     0.00, -- No aplica valor para salas
     '• Reserva máxima de 4 horas por sesión\n• Mantener el espacio limpio y ordenado\n• Apagar luces y equipos al finalizar\n• Respetar el horario establecido\n• No consumir alimentos, solo bebidas',
     TRUE, 
@@ -90,7 +90,7 @@ INSERT INTO productos (
     'Portátil Lenovo IdeaPad 3', 
     'Equipo portátil con procesador AMD Ryzen 5, 8GB RAM, 256GB SSD. Ideal para presentaciones, desarrollo de proyectos y trabajos académicos.',
     1, -- TECNOLOGÍA
-    5, 
+    2, 
     2500000.00, 
     '• Uso exclusivo dentro del campus\n• No modificar configuraciones del sistema\n• Entregar con cargador original\n• Reportar daños o bloqueos de inmediato',
     TRUE, 
@@ -111,7 +111,7 @@ INSERT INTO productos (
     'Cámara Canon EOS Rebel T7', 
     'Cámara réflex digital con lente 18-55mm, resolución de 24.1MP, ideal para fotografía institucional, eventos o proyectos audiovisuales.',
     1, -- TECNOLOGÍA
-    2, 
+    1, 
     3200000.00, 
     '• Manipular con correa y protección de lente\n• Prohibido cambiar configuraciones avanzadas\n• Devolver con batería cargada y memoria SD\n• Uso máximo de 24 horas',
     TRUE, 
@@ -121,29 +121,16 @@ INSERT INTO productos (
 
 -- Imágenes para el Videobeam (Producto ID 1)
 INSERT INTO imagenes_producto (id_producto, url_imagen, es_principal) VALUES
-(1, '/assets/images/productos/videobeam-epsom-x49-1.jpg', TRUE),
-(1, '/assets/images/productos/videobeam-epsom-x49-2.jpg', FALSE),
-(1, '/assets/images/productos/videobeam-especificaciones.jpg', FALSE);
+(1, 'videobeam-epsom-x49-1.jpg', TRUE);
 
 -- Imágenes para la Sala de Estudio (Producto ID 2)
 INSERT INTO imagenes_producto (id_producto, url_imagen, es_principal) VALUES
-(2, '/assets/images/productos/sala-estudio-grupo-a-1.jpg', TRUE),
-(2, '/assets/images/productos/sala-estudio-grupo-a-2.jpg', FALSE),
-(2, '/assets/images/productos/sala-estudio-diagrama.jpg', FALSE);
+(2, 'sala-estudio-grupo-a-1.jpg', TRUE);
 
-INSERT INTO `prestamvc`.`imagenes_producto` (`id_imagen`, `id_producto`, `url_imagen`, `es_principal`) 
-VALUES ('2', '3', 'portatil-lenovo.jpg', '1');
-INSERT INTO `prestamvc`.`imagenes_producto` (`id_imagen`, `id_producto`, `url_imagen`, `es_principal`) 
-VALUES ('3', '4', 'camara-canon.jpg', '1');
+-- (Producto ID 3)
+INSERT INTO imagenes_producto (id_producto, url_imagen, es_principal) VALUES
+(3, 'portatil-lenovo.jpg', TRUE);
 
-
-/*
-INSERT INTO usuarios VALUES
-('761', 'Juan Peréz', 'juan@uno.com', '1234', '3113', 'Calle 1', 1, 1),
-('341', 'María Cuellar', 'maria@uno.com', '1234', '3112', 'Carrera 2', 3, 2),
-('762', 'Mario Burbano', 'mario@uno.com', '1234', '3111', 'Calle 2', 2, 1);
-
-*/
-
-
-
+-- (Producto ID 2)
+INSERT INTO imagenes_producto (id_producto, url_imagen, es_principal) VALUES
+(4, 'camara-canon.jpg', TRUE);
