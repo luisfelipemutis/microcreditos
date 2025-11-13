@@ -33,8 +33,11 @@
         <li>
           <a href="<?= base_url ?>index.php?view=updateUser" class="btn btn-secondary">Gestionar Cuenta</a>
         </li>
-        <li><a href="#" class="btn btn-secondary">Gestionar Préstamos</a></li>
-        <!-- <li><a href="#" class="btn btn-secondary">Ver Historial</a></li> -->
+        <li>
+          <a href="<?= base_url ?>index.php?controller=Prestamo&action=getLoansByIdUser" class="btn btn-secondary">
+            Mis préstamos
+          </a>
+        </li>
       </ul>
 
       <button class="btn btn-danger" onclick="location.href='<?= base_url ?>usuario/logout'">Cerrar Sesión</button>

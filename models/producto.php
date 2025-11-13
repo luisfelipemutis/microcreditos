@@ -168,5 +168,23 @@ class Producto
 
     return $result;
   }
+
+  public function updateReturnedProduct($id)
+  {
+    $result = false;
+    try {
+      $sql = "UPDATE productos 
+                SET cantidad_disponible = cantidad_disponible + 1 
+                WHERE id_producto = '{$id}'";
+      $update = $this->db->query($sql);
+      if ($update && $this->db->affected_rows === 1) {
+        $result = true;
+      }
+    } catch (Exception $e) {
+      error_log("Excepción en updateReturnedProduct(): " . $e->getMessage());
+    }
+    return $result;
+  }
+
 }
 ?>

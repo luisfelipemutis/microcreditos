@@ -192,5 +192,83 @@ class Prestamo
 
         return $result;
     }
+
+    public function getPrestamoById($idPrestamo)
+    {
+        try {
+            $sql = "SELECT * FROM prestamos WHERE id_prestamo = '{$idPrestamo}' LIMIT 1";
+            $query = $this->db->query($sql);
+            return ($query && $query->num_rows == 1) ? $query->fetch_object() : false;
+        } catch (Exception $e) {
+            error_log("Excepción en getPrestamoById(): " . $e->getMessage());
+            return false;
+        }
+    }
+
+
+    public function getLoansByIdUser($idUser)
+    {
+        try {
+            $sql = "
+          SELECT 
+            p.id_prestamo,
+            p.id_producto,
+            pr.nombre AS producto_nombre,
+            p.motivo_solicitud,
+            p.fecha_solicitud,
+            p.fecha_devolucion,
+            p.id_estado_actual,
+            e.nombre AS estado_nombre
+          FROM prestamos p
+          LEFT JOIN productos pr ON pr.id_producto = p.id_producto
+          LEFT JOIN estados_prestamo e ON e.id_estado = p.id_estado_actual
+          WHERE p.id_usuario_solicitante = '{$this->db->real_escape_string($idUser)}'
+          ORDER BY p.fecha_solicitud DESC";
+
+            $loans = $this->db->query($sql);
+            return ($loans && $loans->num_rows > 0) ? $loans : false;
+        } catch (Exception $e) {
+            error_log("Excepción en getLoansByIdUser(): " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function cancelarPrestamo($idPrestamo, $idUsuario)
+    {
+        $result = false;
+        try {
+            // Solo se pueden eliminar préstamos que estén en estado "Solicitado" (id_estado_actual = 1)
+            $sql = "DELETE FROM prestamos 
+                WHERE id_prestamo = '{$idPrestamo}' 
+                AND id_usuario_solicitante = '{$idUsuario}' 
+                AND id_estado_actual = 1";
+
+            $result = $this->db->query($sql);
+            return $result;
+        } catch (Exception $e) {
+            error_log("Exepción en cancelarPrestamo(): " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function marcarComoDevuelto($idPrestamo, $idUsuario)
+    {
+        $result = false;
+        try {
+            // Solo se pueden devolver préstamos que estén en estado "Aprobado" (id_estado_actual = 2)
+            $sql = "UPDATE prestamos 
+                SET id_estado_actual = 5,  -- 3 = Devuelto
+                    fecha_devolucion = NOW()
+                WHERE id_prestamo = '{$idPrestamo}' 
+                AND id_usuario_solicitante = '{$idUsuario}' 
+                AND id_estado_actual = 2";
+
+            $result = $this->db->query($sql);
+            return $result;
+        } catch (Exception $e) {
+            error_log("Exepción en marcarComoDevuelto():" . $e->getMessage());
+            return false;
+        }
+    }
 }
 ?>

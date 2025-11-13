@@ -51,5 +51,99 @@ class PrestamoController
         }
     }
 
+    public function getLoansByIdUser()
+    {
+        if (!isset($_SESSION['identity'])) {
+            $_SESSION['msgerror'] = "Debes iniciar sesión.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        $loanModel = new Prestamo();
+        $loans = $loanModel->getLoansByIdUser($_SESSION['identity']->id_usuario);
+
+        require_once 'views/prestamos/manageLoans.php';
+    }
+
+    public function cancelarPrestamo()
+    {
+        if (!isset($_SESSION['identity'])) {
+            $_SESSION['msgerror'] = "Debes iniciar sesión.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        if (!isset($_GET['id'])) {
+            $_SESSION['msgerror'] = "No se especificó el préstamo a cancelar.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        $idPrestamo = $_GET['id'];
+        $idUsuario = $_SESSION['identity']->id_usuario;
+
+        $prestamo = new Prestamo();
+
+        $prestamoData = $prestamo->getPrestamoById($idPrestamo);
+        if (!$prestamoData) {
+            $_SESSION['msgerror'] = "No se encontró el préstamo.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        $idProducto = $prestamoData->id_producto;
+        $result = $prestamo->cancelarPrestamo($idPrestamo, $idUsuario);
+
+        if ($result) {
+            $producto = new Producto();
+            $producto->updateReturnedProduct($idProducto);
+
+            $_SESSION['msgsuccess'] = "Solicitud cancelada correctamente.";
+        } else {
+            $_SESSION['msgerror'] = "No se pudo cancelar la solicitud.";
+        }
+
+        header("Location: " . base_url . "index.php?controller=Prestamo&action=getLoansByIdUser");
+    }
+
+    public function marcarComoDevuelto()
+    {
+        if (!isset($_SESSION['identity'])) {
+            $_SESSION['msgerror'] = "Debes iniciar sesión.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        if (!isset($_GET['id'])) {
+            $_SESSION['msgerror'] = "No se especificó el préstamo a devolver.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        $idPrestamo = $_GET['id'];
+        $idUsuario = $_SESSION['identity']->id_usuario;
+
+        $prestamo = new Prestamo();
+        $prestamoData = $prestamo->getPrestamoById($idPrestamo);
+        if (!$prestamoData) {
+            $_SESSION['msgerror'] = "No se encontró el préstamo.";
+            require_once 'views/error.php';
+            return;
+        }
+
+        $idProducto = $prestamoData->id_producto;
+        $result = $prestamo->marcarComoDevuelto($idPrestamo, $idUsuario);
+
+        if ($result) {
+            $producto = new Producto();
+            $producto->updateReturnedProduct($idProducto);
+
+            $_SESSION['msgsuccess'] = "El préstamo fue marcado como devuelto correctamente.";
+        } else {
+            $_SESSION['msgerror'] = "No se pudo marcar como devuelto.";
+        }
+
+        header("Location: " . base_url . "index.php?controller=Prestamo&action=getLoansByIdUser");
+    }
 }
 ?>

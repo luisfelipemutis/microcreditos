@@ -44,6 +44,9 @@ require_once 'views/header.php';
           case 'rentProduct':
             require_once 'views/productos/rentProduct.php';
             break;
+          case 'manageLoans':
+            require_once 'views/prestamos/manageLoans.php';
+            break;
           default:
             show_error();
             break;
