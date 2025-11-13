@@ -151,7 +151,6 @@ class Usuario
     $result = false;
     try {
 
-
       $sql = "INSERT INTO usuarios (
             nombres, 
             apellidos, 
@@ -187,14 +186,90 @@ class Usuario
     }
   }
 
+  public function update()
+  {
+    $result = false;
+    try {
+      $idUser = $this->identificacion;
+      $newName = $this->nombres;
+      $newLastName = $this->apellidos;
+      $newEmail = $this->email;
+      $newPhone = $this->telefono;
+
+      $sql = "UPDATE usuarios SET
+      nombres = '{$newName}',
+      apellidos = '{$newLastName}',
+      email = '{$newEmail}',
+      telefono = '{$newPhone}'
+      WHERE identificacion = '{$idUser}'";
+
+      $update = $this->db->query($sql);
+      if ($update) {
+        $result = true;
+      }
+      return $result;
+    } catch (Exception $e) {
+      error_log("Exepción en update(): " . $e->getMessage());
+      return $result;
+    }
+  }
+
+  public function getUserByIdentificacion($id)
+  {
+    $result = false;
+    try {
+      $sql = "SELECT 
+                u.id_usuario,
+                u.nombres,
+                u.apellidos,
+                u.identificacion,
+                u.email,
+                u.telefono,
+                u.password_hash,
+                ti.nombre AS tipo_identificacion,
+                g.nombre AS genero,
+                u.id_tipo_usuario
+            FROM usuarios u
+            INNER JOIN tipos_identificacion ti ON u.id_tipo_identificacion = ti.id_tipo_identificacion
+            LEFT JOIN generos g ON u.id_genero = g.id_genero
+            WHERE u.identificacion = '{$id}'
+              AND u.activo = 1
+            LIMIT 1";
+
+      $user = $this->db->query($sql);
+      if ($user && $user->num_rows == 1) {
+        $result = $user->fetch_object();
+      }
+    } catch (Exception $e) {
+      error_log("Exepción en getUserByIdentificacion()" . $e->getMessage());
+    }
+    return $result;
+  }
+
   public function login()
   {
     $result = false;
     $id = $this->identificacion;
     $password = $this->password_hash;
 
-    // Check if user exists
-    $sql = "SELECT * FROM usuarios WHERE identificacion = '$id'";
+    $sql = "SELECT 
+                u.id_usuario,
+                u.nombres,
+                u.apellidos,
+                u.identificacion,
+                u.email,
+                u.telefono,
+                u.password_hash,
+                ti.nombre AS tipo_identificacion,
+                g.nombre AS genero,
+                u.id_tipo_usuario
+            FROM usuarios u
+            INNER JOIN tipos_identificacion ti ON u.id_tipo_identificacion = ti.id_tipo_identificacion
+            LEFT JOIN generos g ON u.id_genero = g.id_genero
+            WHERE u.identificacion = '{$id}'
+              AND u.activo = 1
+            LIMIT 1";
+
     $login = $this->db->query($sql);
 
     if ($login && $login->num_rows == 1) {

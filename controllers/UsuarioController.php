@@ -49,6 +49,41 @@ class UsuarioController
     }
   }
 
+  public function update()
+  {
+    if (isset($_POST)) {
+      $usuario = new Usuario();
+      $usuario->setIdentificacion($_SESSION['identity']->identificacion);
+      $usuario->setNombres($_POST['nombre']);
+      $usuario->setApellidos($_POST['apellido']);
+      $usuario->setEmail($_POST['email']);
+      $usuario->setTelefono($_POST['telefono']);
+
+      $update = $usuario->update();
+
+      if ($update) {
+        $this->refreshUser($usuario->getIdentificacion());
+        $_SESSION['msgsuccess'] = "Datos actualizado con exito!";
+        require_once 'views/success.php';
+      } else {
+        $_SESSION['msgerror'] = "Error en la actualización de datos!!";
+        require_once 'views/error.php';
+      }
+    } else {
+      $_SESSION['msgerror'] = "No existen datos de entrada";
+      require_once 'views/error.php';
+    }
+  }
+
+  public function refreshUser($id)
+  {
+    $usuario = new Usuario();
+    $datos = $usuario->getUserByIdentificacion($id);
+    if ($datos && is_object($datos)) {
+      $_SESSION['identity'] = $datos;
+    }
+  }
+
   public function login()
   {
     $valido = false;

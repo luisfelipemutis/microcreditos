@@ -36,8 +36,10 @@ require_once 'views/header.php';
             require_once 'views/sobreNosotros/contact.php';
             break;
           case 'inicio':
-            // Si quieres, puedes definir una vista principal estática (opcional)
             require_once 'views/inicio.php';
+            break;
+          case 'updateUser':
+            require_once 'views/usuarios/updateUser.php';
             break;
           default:
             show_error();

@@ -98,11 +98,23 @@ Paleta de colores recomendada:
 echo "<script>console.log('ERROR: Contraseñas no coinciden');</script>";
  echo "<script>console.log('POST:', " . json_encode($_POST) . ");</script>";
 
- error_log("Ejecutando INSERT para usuario: " . $sql);
+
+Imprimir errores en un archivo .php
+error_log("Ejecutando INSERT para usuario: " . $sql);
+error_log("Usuario: " . var_export($datos, true));
+
+
+      error_log("Usuario: " . var_export($datos, true));
+
 
  admin1234
 
 ///
+
+
+
+
+
 
 
 
